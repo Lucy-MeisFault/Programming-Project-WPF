@@ -1,0 +1,19 @@
+Aplikace na Osobní evidenci her
+
+Aplikace má sloužit uživateli pro osobní statistiky o hrách které hraje. Má být schopna dynamicky zobrazovat statistiky o hrách, Ukládat je, umožnit uživateli měnit, aktualizovat, přidávat a odstraňovat záznamy. Něco jako statistiky co Steam automaticky zaznamenává.
+Aplikace umožňuje jednoduchou navigaci pomocí sidebaru na levé straně obrazovky a popisků. Aplikace používá knihovny; MahApps.Metro pro vzhled, LiveCharts2 pro grafy a MySql.Data pro připojení databáze.
+
+Aktuálně (11.6.) aplikace umožňuje drtivou většinu požadavků v mém zadání. Nejvíc práce mi zatím dal xaml samotný a knihovna Livecharts. Nebýt příkladů kódu .xaml na internetu by aplikace vypadala o hodně hůř. Livecharts má sice docela přehlednou dokumentaci, ale ukázalo se, že jsem stáhla starší verzi, na kterou se ta nejnovější nestahuje a tak vzhled grafů zatím je docela nic moc. Možná ještě změním barvy aplikace ať nemusím řešit nečitelný text na popiscích. Alespoň grafy ukazují správná data. Také jsem využila overloadování funkcí, abych se vyhla psaní více xamlu :D
+během vývoje se mi dvakrát kompletně corruptnula či rozbila databáze. Teď už pro jistotu mám v záloze celý create + insert script.
+Myslím, že jsem se při vývoji naučila hlavně propojovat xaml s C#, práci s knihovnami a víc využívat vbudované funkce C#. Vzhledem k nedávným pracím v javascriptu jsem take hledala operátory, které se mi hodily tam, jako třeba lambda (=>) a null coalecting operator (??). Také jsem se naučila, že pokud je někde chyba, tak to je pravděpodobně v importech. 
+ 
+
+TODO:
+Fix chart tooltip looks
+Allow deleting games
+Bring over to light mode
+Display total amount of games, hours in games.
+Allow export of games in json
+Let user choose their own color scheme
+Maybe let them make their own graphs but I don’t wanna do that
+

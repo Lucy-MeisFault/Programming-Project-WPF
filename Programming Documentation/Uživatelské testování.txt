@@ -1,0 +1,702 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project
+{
+    public class Status
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Status(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+
+    }
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project
+{
+
+
+    public class Platform
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Platform(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+
+    }
+
+}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Project
+{
+
+    public class Genre
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public Genre(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+
+    }
+}
+using MahApps.Metro.Controls;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System;
+using System.Windows;
+using System.Diagnostics;
+using LiveCharts;
+using LiveCharts.Wpf;
+
+namespace Project
+{
+    /// <summary>
+    /// Interakční logika pro Window2.xaml
+    /// </summary>
+    public partial class StatisticsWindow : MetroWindow
+    {
+        private MainWindow mainWindow;
+        public StatisticsWindow(MainWindow main)
+        {
+            InitializeComponent();
+            mainWindow = main;
+
+            LoadHoursChart(MainWindow.gameList);
+            LoadStatusChart();
+            LoadLists();
+        }
+        private void AddGame(object sender, RoutedEventArgs e) => mainWindow.AddGame(sender, e);
+        private void Library(object sender, RoutedEventArgs e) => mainWindow.Library(sender, e);
+        private void Stats(object sender, RoutedEventArgs e) => mainWindow.Stats(sender, e);
+        private void Search(object sender, RoutedEventArgs e) => mainWindow.Search(sender, e);
+        private void Settings(object sender, RoutedEventArgs e) => mainWindow.Settings(sender, e);
+        private void Exit(object sender, RoutedEventArgs e) => mainWindow.Exit(sender, e);
+        private void Options(object sender, RoutedEventArgs e) => mainWindow.Options(sender, e);
+
+        private void LoadHoursChart(List<Game> games)
+        {
+
+            var top4 = games
+                .OrderByDescending(g => g.HoursPlayed)
+                .Take(8)
+                .ToList();
+
+            double otherHours = games
+                .OrderByDescending(g => g.HoursPlayed)
+                .Skip(8)
+                .Sum(g => g.HoursPlayed);
+
+            double total = games.Sum(g => g.HoursPlayed);
+
+            var seriesCollection = new SeriesCollection();
+
+            foreach (var game in top4)
+            {
+                seriesCollection.Add(new PieSeries
+                {
+                    Title = game.Title, 
+                    Values = new ChartValues<double> { game.HoursPlayed },
+                    DataLabels = true,
+                    LabelPoint = p => $"{p.Participation:P0}"
+                });
+            }
+
+            if (otherHours > 0)
+            {
+                seriesCollection.Add(new PieSeries
+                {
+                    Title = "Other",
+                    Values = new ChartValues<double> { otherHours },
+                    DataLabels = true,
+                    LabelPoint = p => $"{p.Participation:P0}"
+                });
+            }
+
+            hoursChart.Series = seriesCollection;
+            hoursChart.InnerRadius = 60; 
+        }
+        private void LoadStatusChart()
+        {
+            statusChart.LegendLocation = LegendLocation.None;
+            var statusNames = new Dictionary<int, string>
+            {
+        { 1, "Want to play" },
+        { 2, "Playing" },
+        { 3, "Completed" },
+        { 4, "Dropped" }
+            };
+
+            var counts = statusNames.Keys.ToDictionary(
+                k => k,
+                k => MainWindow.gameList.Count(g => g.IdStatus == k)
+            );
+
+            statusChart.Series = new SeriesCollection
+    {
+        new ColumnSeries
+        {
+            Title = "Games",
+            Values = new ChartValues<int>(counts.Values),
+            DataLabels = true,
+            Fill = new SolidColorBrush(Color.FromRgb(41, 98, 163))
+        }
+    };
+
+            statusChart.AxisX = new AxesCollection
+    {
+        new Axis
+        {
+            Labels = counts.Keys.Select(k => statusNames[k]).ToList(),
+            Foreground = Brushes.White
+        }
+    };
+
+            statusChart.AxisY = new AxesCollection
+    {
+        new Axis
+        {
+            Foreground = Brushes.White,
+            MinValue = 0
+        }
+
+    };
+
+        }
+        private void LoadLists()
+        {
+            lstOne.ItemsSource = MainWindow.gameList
+                .OrderByDescending(g => g.HoursPlayed)
+                .Take(5)
+                .Select(g => g.Title + ", " + g.HoursPlayed + " hours");
+
+            lstTwo.ItemsSource = MainWindow.gameList
+                .OrderByDescending(g => g.Rating)
+                .Take(5)
+                .Select(g => g.Title + ", " + "rated: "  + g.Rating);
+
+            lstThree.ItemsSource = MainWindow.gameList
+                .OrderByDescending(g => g.DateAdded)
+                .Take(5)
+                .Select(g => g.Title + ", added: " + g.DateAdded.ToShortDateString());
+
+            lstFour.ItemsSource = MainWindow.genreList
+                .Select(genre => new ////////////////////fix
+                {
+                    Name = genre.Name,
+                    Count = MainWindow.gameList.Count(g => g.IdGenre == genre.Id)
+                })
+                .OrderByDescending(g => g.Count)
+                .Take(5)
+                .Select(g => $"{g.Name} {g.Count}");
+        }
+    }
+}
+
+using MahApps.Metro.Controls;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System;
+using System.Windows;
+using System.Diagnostics;
+
+namespace Project
+{
+    /// <summary>
+    /// Interakční logika pro Window1.xaml
+    /// </summary>
+    public partial class LibraryWindow : MetroWindow 
+    {
+        private MainWindow mainWindow;
+        public LibraryWindow(MainWindow main) 
+        {
+            InitializeComponent();
+            mainWindow = main;
+            dgGames.ItemsSource = MainWindow.gameList;
+            btnLibrary.IsEnabled = false;
+        }
+        private void AddGame(object sender, RoutedEventArgs e) => mainWindow.AddGame(sender, e);
+        private void Library(object sender, RoutedEventArgs e) => mainWindow.Library(sender, e);
+        private void Stats(object sender, RoutedEventArgs e) => mainWindow.Stats(sender, e);
+        private void Search(object sender, RoutedEventArgs e) => mainWindow.Search(sender, e);
+        private void Settings(object sender, RoutedEventArgs e) => mainWindow.Settings(sender, e);
+        private void Exit(object sender, RoutedEventArgs e) => mainWindow.Exit(sender, e);
+        private void Options(object sender, RoutedEventArgs e) => mainWindow.Options(sender, e);
+        public LibraryWindow(MainWindow main, Game g)
+        {
+            InitializeComponent();
+            mainWindow = main;
+
+            var searchedGames = MainWindow.gameList.Where(gg =>
+                (string.IsNullOrEmpty(g.Title) || gg.Title.ToLower().Contains(g.Title.ToLower())) &&
+                (g.IdGenre == 0 || gg.IdGenre == g.IdGenre) &&
+                (g.IdPlatform == 0 || gg.IdPlatform == g.IdPlatform) &&
+                (g.IdStatus == 0 || gg.IdStatus == g.IdStatus) &&
+                (g.Rating == 0 || gg.Rating == g.Rating)
+            ).ToList();
+
+            dgGames.ItemsSource = searchedGames;
+            btnLibrary.IsEnabled = false;
+        }
+    }
+}
+using MahApps.Metro.Controls;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System;
+using System.Windows;
+using System.Diagnostics;
+
+namespace Project
+{
+    /// <summary>
+    /// Interakční logika pro Window3.xaml
+    /// </summary>
+    public partial class CreateWindow : MetroWindow
+    {
+        public Game FilterGame;
+        private MainWindow mainWindow;
+        public CreateWindow(MainWindow main)
+        {
+            InitializeComponent();
+            mainWindow = main;
+            cmbGenre.ItemsSource = MainWindow.genreList;
+            cmbGenre.DisplayMemberPath = "Name";
+            cmbGenre.SelectedValuePath = "Id";
+
+            cmbPlatform.ItemsSource = MainWindow.platformList;
+            cmbPlatform.DisplayMemberPath = "Name";
+            cmbPlatform.SelectedValuePath = "Id";
+
+            cmbStatus.ItemsSource = MainWindow.statusList;
+            cmbStatus.DisplayMemberPath = "Name";
+            cmbStatus.SelectedValuePath = "Id";
+        }
+        public CreateWindow(MainWindow main, bool Filter)
+        {
+            InitializeComponent();
+            btnSave.Click -= Save;
+            btnSave.Click += CreateFilter;
+            mainWindow = main;
+            cmbGenre.ItemsSource = MainWindow.genreList;
+            cmbGenre.DisplayMemberPath = "Name";
+            cmbGenre.SelectedValuePath = "Id";
+
+            cmbPlatform.ItemsSource = MainWindow.platformList;
+            cmbPlatform.DisplayMemberPath = "Name";
+            cmbPlatform.SelectedValuePath = "Id";
+
+            cmbStatus.ItemsSource = MainWindow.statusList;
+            cmbStatus.DisplayMemberPath = "Name";
+            cmbStatus.SelectedValuePath = "Id";
+        }
+
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            mainWindow.Show();
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            int rating;
+            int.TryParse(txtRating.Text, out rating);
+
+            MainWindow.gameList.Add(
+                new Game(
+                    MainWindow.gameList.Count + 1,
+                    txtTitle.Text,
+                    ((Genre)cmbGenre.SelectedItem).Id,
+                    ((Platform)cmbPlatform.SelectedItem).Id,
+                    ((Status)cmbStatus.SelectedItem).Id,
+                    rating,
+                    0,
+                    txtNotes.Text,
+                    DateTime.Now
+                )
+            );
+
+            Close();
+            mainWindow.Library(sender, e);
+        }
+        private void CreateFilter(object sender, RoutedEventArgs e)
+        {
+            int rating;
+            int.TryParse(txtRating.Text, out rating);
+            FilterGame = new Game(
+                0,
+                txtTitle.Text ?? "",
+                (cmbGenre.SelectedItem as Genre)?.Id ?? 0,
+                (cmbPlatform.SelectedItem as Platform)?.Id ?? 0,
+                (cmbStatus.SelectedItem as Status)?.Id ?? 0,
+                rating,
+                0,
+                txtNotes.Text ?? "",
+                DateTime.Now);
+            DialogResult = true;
+        }
+
+        private void AddGame(object sender, RoutedEventArgs e) => mainWindow.AddGame(sender, e);
+        private void Library(object sender, RoutedEventArgs e) => mainWindow.Library(sender, e);
+        private void Stats(object sender, RoutedEventArgs e) => mainWindow.Stats(sender, e);
+        private void Search(object sender, RoutedEventArgs e) => mainWindow.Search(sender, e);
+        private void Settings(object sender, RoutedEventArgs e) => mainWindow.Settings(sender, e);
+        private void Exit(object sender, RoutedEventArgs e) => mainWindow.Exit(sender, e);
+        private void BtnOptions_Click(object sender, RoutedEventArgs e) => mainWindow.Options(sender, e);
+    }
+}
+using System.ComponentModel;
+
+public class Game : IEditableObject
+{
+    int id;
+    string title;
+    int idGenre;
+    int idPlatform;
+    int idStatus;
+    int rating;
+    int hoursPlayed;
+    string notes;
+    DateTime dateAdded;
+
+    // backup fields
+    int _id;
+    string _title;
+    int _idGenre;
+    int _idPlatform;
+    int _idStatus;
+    int _rating;
+    int _hoursPlayed;
+    string _notes;
+    DateTime _dateAdded;
+    bool _editing;
+
+    public int Id { get => id; set => id = value; }
+    public string Title { get => title; set => title = value; }
+    public int IdGenre { get => idGenre; set => idGenre = value; }
+    public int IdPlatform { get => idPlatform; set => idPlatform = value; }
+    public int IdStatus { get => idStatus; set => idStatus = value; }
+    public int Rating { get => rating; set => rating = value; }
+    public int HoursPlayed { get => hoursPlayed; set => hoursPlayed = value; }
+    public string Notes { get => notes; set => notes = value; }
+    public DateTime DateAdded { get => dateAdded; set => dateAdded = value; }
+
+    public Game(int id, string title, int idGenre, int idPlatform, int idStatus, int rating, int hoursPlayed, string notes, DateTime dateAdded)
+    {
+        Id = id;
+        Title = title;
+        IdGenre = idGenre;
+        IdPlatform = idPlatform;
+        IdStatus = idStatus;
+        Rating = rating;
+        HoursPlayed = hoursPlayed;
+        Notes = notes;
+        DateAdded = dateAdded;
+    }
+
+    public override string ToString() => title;
+
+    public void BeginEdit()
+    {
+        if (_editing) return;
+        _editing = true;
+        _id = id;
+        _title = title;
+        _idGenre = idGenre;
+        _idPlatform = idPlatform;
+        _idStatus = idStatus;
+        _rating = rating;
+        _hoursPlayed = hoursPlayed;
+        _notes = notes;
+        _dateAdded = dateAdded;
+    }
+
+    public void CancelEdit()
+    {
+        if (!_editing) return;
+        _editing = false;
+        id = _id;
+        title = _title;
+        idGenre = _idGenre;
+        idPlatform = _idPlatform;
+        idStatus = _idStatus;
+        rating = _rating;
+        hoursPlayed = _hoursPlayed;
+        notes = _notes;
+        dateAdded = _dateAdded;
+    }
+
+    public void EndEdit()
+    {
+        _editing = false;
+    }
+}
+using MahApps.Metro.Controls;
+using System.IO;
+using System.Text;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MySql.Data.MySqlClient;
+using System;
+using System.Windows;
+using System.Diagnostics;
+using System.Threading.Tasks;
+
+namespace Project
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow
+    {
+        private int initialGameCount;
+        public static List<Game> gameList = new List<Game>();
+        public static List<Genre> genreList = new List<Genre>();
+        public static List<Status> statusList = new List<Status>();
+        public static List<Platform> platformList = new List<Platform>();
+        private string connectionString = "server=localhost;port=3306;user id=root;password=;" + "database=gamedatabase;";
+        public MainWindow()
+        {
+
+            InitializeComponent();
+            DatabaseConnected();
+            Databases();
+
+        }
+
+
+        private void DatabaseConnected()
+        {
+            try
+            {
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Connection failed: " + ex.Message);
+            }
+        }
+        private void Databases()
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = "SELECT * FROM game";
+                MySqlCommand cmd = new MySqlCommand(query, conn);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Game g;
+                    if (reader["rating"] != DBNull.Value)
+                    {
+                        g = new Game(
+                            (int)reader["id"],
+                            (string)reader["title"],
+                            (int)reader["id_genre"],
+                            (int)reader["id_platform"],
+                            (int)reader["id_status"],
+                            (int)reader["rating"],
+                            (int)reader["hours_played"],
+                            (string)reader["notes"],
+                            (DateTime)reader["date_added"]
+                        );
+                    }
+                    else
+                    {
+                        g = new Game(
+                            (int)reader["id"],
+                            (string)reader["title"],
+                            (int)reader["id_genre"],
+                            (int)reader["id_platform"],
+                            (int)reader["id_status"],
+                            0,
+                            (int)reader["hours_played"],
+                            (string)reader["notes"],
+                            (DateTime)reader["date_added"]
+                        );
+                    }
+                    gameList.Add(g);
+                }
+                reader.Close();
+
+                cmd = new MySqlCommand("SELECT * FROM genre", conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    genreList.Add(new Genre((int)reader["id"], (string)reader["name"]));
+                reader.Close();
+
+                cmd = new MySqlCommand("SELECT * FROM platform", conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    platformList.Add(new Platform((int)reader["id"], (string)reader["name"]));
+                reader.Close();
+
+                cmd = new MySqlCommand("SELECT * FROM status", conn);
+                reader = cmd.ExecuteReader();
+                while (reader.Read())
+                    statusList.Add(new Status((int)reader["id"], (string)reader["name"]));
+                reader.Close();
+
+                initialGameCount = gameList.Count;
+            }
+        }
+        public void AddGame(object sender, RoutedEventArgs e)
+        {
+            CreateWindow createWindow = new CreateWindow(this);
+            foreach (Window w in Application.Current.Windows)
+            w.Hide();
+            createWindow.Show();
+        }
+
+        public void Search(object sender, RoutedEventArgs e)
+        {
+
+            CreateWindow filterWindow = new CreateWindow(this, true);
+            filterWindow.ShowDialog();
+            if (filterWindow.DialogResult == true)
+            {
+                Game g = filterWindow.FilterGame;
+                LibraryWindow searchWindowActually = new LibraryWindow(this, g);
+                searchWindowActually.Show();
+            }
+            
+        }
+
+        public void Settings(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        public void Stats(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+                w.Hide();
+            StatisticsWindow statisticsWindow = new StatisticsWindow(this);
+            statisticsWindow.Left = this.Left;
+            statisticsWindow.Top = this.Top;
+            statisticsWindow.Width = this.Width;
+            statisticsWindow.Height = this.Height;
+            statisticsWindow.Show();
+        }
+
+        public void Library(object sender, RoutedEventArgs e)
+        {
+            foreach (Window w in Application.Current.Windows)
+                w.Hide();
+            LibraryWindow libraryWindow = new LibraryWindow(this);
+            libraryWindow.Left = this.Left;
+            libraryWindow.Top = this.Top;
+            libraryWindow.Width = this.Width;
+            libraryWindow.Height = this.Height;
+            libraryWindow.Show();
+        }
+
+        public void Exit(object sender, RoutedEventArgs e)
+        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                conn.Open();
+
+                new MySqlCommand("DELETE FROM game", conn).ExecuteNonQuery();
+
+                foreach (Game game in gameList)
+                {
+                    string query =
+                        @"INSERT INTO game (title, id_genre, id_platform, id_status, rating, hours_played, notes, date_added)
+                  VALUES (@title, @genre, @platform, @status, @rating, @hours, @notes, @dateAdded)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@title", game.Title);
+                    cmd.Parameters.AddWithValue("@genre", game.IdGenre);
+                    cmd.Parameters.AddWithValue("@platform", game.IdPlatform);
+                    cmd.Parameters.AddWithValue("@status", game.IdStatus);
+                    cmd.Parameters.AddWithValue("@rating", game.Rating);
+                    cmd.Parameters.AddWithValue("@hours", game.HoursPlayed);
+                    cmd.Parameters.AddWithValue("@notes", game.Notes);
+                    cmd.Parameters.AddWithValue("@dateAdded", game.DateAdded);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            Environment.Exit(0);
+        }
+
+        public void Options(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
+}

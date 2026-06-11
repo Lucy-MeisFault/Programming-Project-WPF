@@ -1,0 +1,63 @@
+Yes, they all passed. 
+
+
+
+
+[TestClass]
+public class GameTests
+{
+    [TestMethod]
+    public void TestOne() //toString works?
+    {
+        Game g = new Game(1, "Minecraft", 1, 1, 1, 9, 500, "notes", DateTime.Now);
+        Assert.AreEqual("Minecraft", g.ToString());
+    }
+
+    [TestMethod]
+    public void TestTwo() //Cancelling an edit returns the values back
+    {
+        Game g = new Game(1, "Minecraft", 1, 1, 1, 9, 500, "notes", DateTime.Now);
+        g.BeginEdit();
+        g.Title = "Changed";
+        g.CancelEdit();
+        Assert.AreEqual("Minecraft", g.Title);
+    }
+
+    [TestMethod]
+    public void TestThree() //Editing does work
+    {
+        Game g = new Game(1, "Minecraft", 1, 1, 1, 9, 500, "notes", DateTime.Now);
+        g.BeginEdit();
+        g.Title = "Changed";
+        g.EndEdit();
+        Assert.AreEqual("Changed", g.Title);
+    }
+
+    [TestMethod]
+    public void TestFour() //Filtering works
+    {
+        var list = new List<Game>
+        {
+            new Game(1, "A", 1, 1, 1, 9, 10, "", DateTime.Now),
+            new Game(2, "B", 1, 1, 2, 8, 20, "", DateTime.Now),
+            new Game(3, "C", 1, 1, 1, 7, 30, "", DateTime.Now)
+        };
+
+        var result = list.Where(g => g.IdStatus == 1).ToList();
+        Assert.AreEqual(2, result.Count);
+    }
+
+    [TestMethod]
+    public void TestFive() //ordering by works
+    {
+        var list = new List<Game>
+        {
+            new Game(1, "A", 1, 1, 1, 9, 10, "", DateTime.Now),
+            new Game(2, "B", 1, 1, 1, 8, 500, "", DateTime.Now),
+            new Game(3, "C", 1, 1, 1, 7, 200, "", DateTime.Now)
+        };
+
+        var top = list.OrderByDescending(g => g.HoursPlayed).First();
+        Assert.AreEqual("B", top.Title);
+    }
+}

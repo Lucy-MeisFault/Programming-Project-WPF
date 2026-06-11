@@ -1,0 +1,220 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jakub\\source\\repos\\Project\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window2.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window3.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window3.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window3.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\window2.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\status.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\platform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\platform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\genre.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|c:\\users\\jakub\\source\\repos\\project\\project\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{5E9C98EB-876F-4734-A63D-DD5B17BDE90E}|Project\\Project.csproj|solutionrelative:project\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Status.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Status.cs",
+              "RelativeDocumentMoniker": "Project\\Status.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Status.cs",
+              "RelativeToolTip": "Project\\Status.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T08:21:40.779Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Platform.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Platform.cs",
+              "RelativeDocumentMoniker": "Project\\Platform.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Platform.cs",
+              "RelativeToolTip": "Project\\Platform.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T08:21:19.359Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Genre.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Genre.cs",
+              "RelativeDocumentMoniker": "Project\\Genre.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Genre.cs",
+              "RelativeToolTip": "Project\\Genre.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-05T08:21:06.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Window3.xaml",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window3.xaml",
+              "RelativeDocumentMoniker": "Project\\Window3.xaml",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window3.xaml",
+              "RelativeToolTip": "Project\\Window3.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-04T16:21:21.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Project\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\MainWindow.xaml",
+              "RelativeToolTip": "Project\\MainWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-06-04T15:52:14.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Window2.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window2.xaml.cs",
+              "RelativeDocumentMoniker": "Project\\Window2.xaml.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window2.xaml.cs",
+              "RelativeToolTip": "Project\\Window2.xaml.cs",
+              "ViewState": "AgIAAH4AAAAAAAAAAAAmwJsAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T06:55:46.04Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Window1.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window1.xaml.cs",
+              "RelativeDocumentMoniker": "Project\\Window1.xaml.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window1.xaml.cs",
+              "RelativeToolTip": "Project\\Window1.xaml.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAQwCQAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T06:55:07.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Window3.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window3.xaml.cs",
+              "RelativeDocumentMoniker": "Project\\Window3.xaml.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window3.xaml.cs",
+              "RelativeToolTip": "Project\\Window3.xaml.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAwwC0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-19T06:44:35.592Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Window2.xaml",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window2.xaml",
+              "RelativeDocumentMoniker": "Project\\Window2.xaml",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window2.xaml",
+              "RelativeToolTip": "Project\\Window2.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T15:40:26.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Window1.xaml",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window1.xaml",
+              "RelativeDocumentMoniker": "Project\\Window1.xaml",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Window1.xaml",
+              "RelativeToolTip": "Project\\Window1.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-18T15:39:27.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Game.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Game.cs",
+              "RelativeDocumentMoniker": "Project\\Game.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\Game.cs",
+              "RelativeToolTip": "Project\\Game.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-18T15:38:56.164Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Project\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\jakub\\source\\repos\\Project\\Project\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Project\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAgwMUAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-16T17:28:39.898Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

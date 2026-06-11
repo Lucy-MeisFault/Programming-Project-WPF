@@ -1,0 +1,124 @@
+﻿<mah:MetroWindow x:Class="Project.StatisticsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:local="clr-namespace:Project"
+        mc:Ignorable="d"
+        Title="StatisticsWindow" Height="620" Width="1000"
+        Background="#111111">
+
+    <mah:MetroWindow.Resources>
+        <Style x:Key="SidebarButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#c0c0c0"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="16,10"/>
+            <Setter Property="Margin" Value="0,2"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#111111"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </mah:MetroWindow.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0" Background="#1e2a3a">
+            <DockPanel>
+                <Border DockPanel.Dock="Top" Padding="16,16,16,20"
+                        BorderBrush="#111111" BorderThickness="0,0,0,1">
+                    <TextBlock Text="my amazing cool project" Foreground="White" FontSize="16"
+                               FontWeight="Bold" FontFamily="Segoe UI"/>
+                </Border>
+                <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal" Margin="12,12">
+                    <Button x:Name="btnExit" Content="Exit" Width="60" Margin="0,0,8,0"
+                            Background="#2a2a2a" Foreground="White" BorderThickness="0"
+                            Padding="0,6" FontFamily="Segoe UI" Cursor="Hand"
+                            Click="Exit"/>
+                    <Button x:Name="btnOptions" Content="Options" Width="76"
+                            Background="#2a2a2a" Foreground="#c0c0c0" BorderThickness="0"
+                            Padding="0,6" FontFamily="Segoe UI" Cursor="Hand"
+                            Click="Options"/>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="0,8,0,0">
+                    <Button x:Name="btnLibrary"    Content="   Library"    Style="{StaticResource SidebarButton}" Click="Library"/>
+                    <Button x:Name="btnStatistics" Content="   Statistics" Style="{StaticResource SidebarButton}" Click="Stats"/>
+                    <Button x:Name="btnAddGame"    Content="   Add Game"   Style="{StaticResource SidebarButton}" Click="AddGame"/>
+                    <Button x:Name="btnSearch"     Content="   Search"     Style="{StaticResource SidebarButton}" Click="Search"/>
+                    <Button x:Name="btnSettings"   Content="   Settings"   Style="{StaticResource SidebarButton}" Click="Settings"/>
+                </StackPanel>
+            </DockPanel>
+        </Border>
+
+        <Grid Grid.Column="1" Margin="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="0" Grid.Column="0" Background="#1e2a3a" CornerRadius="8"
+        BorderBrush="#2a3a4a" BorderThickness="1" Margin="0,0,8,8">
+                <lvc:CartesianChart  x:Name="statusChart" Foreground="White" ToolTip="Hidden"/>
+            </Border>
+
+            <Border Grid.Row="0" Grid.Column="1" Background="#1e2a3a" CornerRadius="8"
+        BorderBrush="#2a3a4a" BorderThickness="1" Margin="8,0,0,8">
+                <lvc:PieChart x:Name="hoursChart"  InnerRadius="60" LegendLocation="Right"
+                 Foreground="White"/>
+            </Border>
+
+            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,8,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- 5 most played games, 5 highest rated games, 5 newest games, 5 most common genres-->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Most Played" Foreground="#c0c0c0"
+               FontFamily="Segoe UI" FontSize="12" Margin="0,0,8,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Highest Rated" Foreground="#c0c0c0"
+               FontFamily="Segoe UI" FontSize="12" Margin="8,0,8,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Recently Added" Foreground="#c0c0c0"
+               FontFamily="Segoe UI" FontSize="12" Margin="8,0,8,4"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Text="Top Genres" Foreground="#c0c0c0"
+               FontFamily="Segoe UI" FontSize="12" Margin="8,0,0,4"/>
+
+                <ListBox x:Name="lstOne"   Grid.Row="1" Grid.Column="0" Margin="0,0,8,0"
+             Background="#1e2a3a" Foreground="White"
+             BorderBrush="#2a3a4a" FontFamily="Segoe UI"/>
+                <ListBox x:Name="lstTwo"   Grid.Row="1" Grid.Column="1" Margin="8,0,8,0"
+             Background="#1e2a3a" Foreground="White"
+             BorderBrush="#2a3a4a" FontFamily="Segoe UI"/>
+                <ListBox x:Name="lstThree" Grid.Row="1" Grid.Column="2" Margin="8,0,8,0"
+             Background="#1e2a3a" Foreground="White"
+             BorderBrush="#2a3a4a" FontFamily="Segoe UI"/>
+                <ListBox x:Name="lstFour"  Grid.Row="1" Grid.Column="3" Margin="8,0,0,0"
+             Background="#1e2a3a" Foreground="White"
+             BorderBrush="#2a3a4a" FontFamily="Segoe UI"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</mah:MetroWindow>
